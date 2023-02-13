@@ -4,7 +4,7 @@
 # Date: Nov, 20, 2020
 # Description: Manipulation Functions for the Processor
 
-import cmpt120imageProj
+import imageProj
 import numpy
 
 # BASIC FUNCTIONS:
@@ -35,7 +35,7 @@ def fliphorizontal(pixels):
   height = len(pixels[0])
   # Create a new black image with parameters of the width and height of the image
   # Store pixels in a variable called final
-  currentImg = cmpt120imageProj.createBlackImage(width, height) 
+  currentImg = imageProj.createBlackImage(width, height) 
   final = pixels
   # Store the height and width of the pixels as variables
   width = len(pixels)
@@ -55,9 +55,9 @@ def flipvertical(pixels):
   height = len(pixels[1])
   # Create a new black image with parameters of the width and height of the image
   # Store pixels in a variable called final
-  currentImg = cmpt120imageProj.createBlackImage(width, height) 
+  currentImg = imageProj.createBlackImage(width, height) 
   final = pixels
-  # Make a new copy of the image by making the pixels of the black image the same as the image
+  # Make a new copy of the image by making the pixels of the black image the same as the image 
   for x in range(width):
     for y in range(height):
       currentImg[x][y] = pixels[x][y]
@@ -247,7 +247,7 @@ def rotateleft(pixels):
   width = len(pixels)
   height = len(pixels[0])
   # Make a new image but reverse its height and width with the inputted image
-  result = cmpt120imageProj.createBlackImage(height, width)
+  result = imageProj.createBlackImage(height, width)
   # Loop through every pixel of both images, making each column of the inputted image the row of the result 
   for x in range(height):
     for y in range(width):
@@ -260,7 +260,7 @@ def rotateright(pixels):
   width = len(pixels)
   height = len(pixels[0])
   # Make a new image but reverse its height and width with the inputted image
-  result = cmpt120imageProj.createBlackImage(height, width)
+  result = imageProj.createBlackImage(height, width)
   # Loop through every pixel of both images, making each negative row of the inputted image the positive column of the result
   for x in range(height):
     for y in range(width):

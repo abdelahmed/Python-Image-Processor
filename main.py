@@ -3,8 +3,8 @@
 # Date: November 20, 2020
 # Description: Image Processing Program with Interface
 
-import cmpt120imageProj
-import cmpt120imageManip
+import imageProj
+import imageManip
 import tkinter.filedialog
 import pygame
 pygame.display.init()
@@ -65,7 +65,7 @@ def generateMenu(state):
     Input:  state - a dictionary containing the state values of the application
     Returns: a list of strings, each element represets a line in the interface
     """
-    menuString = ["Welcome to CMPT 120 Image Processer!"]
+    menuString = ["Welcome to the Image Processer!"]
     menuString.append("") # an empty line
     menuString.append("Choose the following options:")
     menuString.append("") # an empty line
@@ -94,8 +94,8 @@ def generateMenu(state):
     return menuString
 
 
-currentImg = cmpt120imageProj.createBlackImage(600, 400) # create a default 600 x 400 black image
-cmpt120imageProj.showInterface(currentImg, "No Image", generateMenu(appStateValues)) # note how it is used
+currentImg = imageProj.createBlackImage(600, 400) # create a default 600 x 400 black image
+imageProj.showInterface(currentImg, "No Image", generateMenu(appStateValues)) # note how it is used
 
 # a helper function that returns the result image as a result of the operation chosen by the user
 # it also updates the state values when necessary (e.g, the mode attribute if the user switches mode)
@@ -115,11 +115,11 @@ def handleUserInput(state, img):
           tkinter.Tk().withdraw()
           openFilename = tkinter.filedialog.askopenfilename()
           # GEt the image opened and store it, along with its width and height
-          img = cmpt120imageProj.getImage(openFilename)
+          img = imageProj.getImage(openFilename)
           width = len(img)
           height = len(img[0])
           # Make a new image with all black pixels, and copy over the pixels of the selected image
-          initialImg = cmpt120imageProj.createBlackImage(width,height)
+          initialImg = imageProj.createBlackImage(width,height)
           for x in range(width):
             for y in range(height):
               initialImg[x][y]= img[x][y]
@@ -128,27 +128,27 @@ def handleUserInput(state, img):
           # Set the last user input dictionary value as the copy of the image
           appStateValues["lastUserinput"] = initialImg
           # Show the image on the interface, along with its filename and the menu
-          cmpt120imageProj.showInterface(img, openFilename, generateMenu(appStateValues))
+          imageProj.showInterface(img, openFilename, generateMenu(appStateValues))
         elif userInput == "S":
           tkinter.Tk().withdraw()
           saveFilename = tkinter.filedialog.asksaveasfilename()
           # Save the image in the selected filename
-          cmpt120imageProj.saveImage(img, saveFilename)
+          imageProj.saveImage(img, saveFilename)
           # Continue to show the image on the interface
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
         elif userInput == "R":
           # Change the value of the image to the initial image that was opened by the user using the getImage function
-          img = cmpt120imageProj.getImage(appStateValues["lastOpenFilename"])
+          img = imageProj.getImage(appStateValues["lastOpenFilename"])
           # Store the width and height of the image
           width = len(img)
           height = len(img[0])
           # Create a new image an copy over the pixels of the last opened image
-          initialImg = cmpt120imageProj.createBlackImage(width,height)
+          initialImg = imageProj.createBlackImage(width,height)
           for x in range(width):
             for y in range(height):
               initialImg[x][y]= img[x][y]
           # Show the copied image on the interface
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           
           
           
@@ -158,95 +158,95 @@ def handleUserInput(state, img):
     elif userInput.isdigit(): # has to be a digit for manipulation options
       while appStateValues["mode"] == "basic": # While the definition of mode is basic, perform the following functions after input
         if userInput == "1":
-          cmpt120imageManip.invert(img)
-          cmpt120imageProj.showInterface(img,  appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.invert(img)
+          imageProj.showInterface(img,  appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           print("Log: Doing manipulation functionalities " + userInput)
           return img
 
         elif userInput == "2":
-          cmpt120imageManip.fliphorizontal(currentImg)
-          cmpt120imageProj.showInterface(img,  appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.fliphorizontal(currentImg)
+          imageProj.showInterface(img,  appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
 
         elif userInput == "3":
-          cmpt120imageManip.flipvertical(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.flipvertical(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
 
         elif userInput == "4":
           state["mode"] = "intermediate"
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         
         elif userInput == "5":
           state["mode"] = "advanced"
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
       
       while appStateValues["mode"] == "intermediate": # While the definition of mode is intermediate, perform the following functions after input
         if userInput == "1":
-          cmpt120imageManip.removered(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.removered(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         elif userInput == "2":
-          cmpt120imageManip.removegreen(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.removegreen(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         elif userInput == "3":
-          cmpt120imageManip.removeblue(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.removeblue(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         elif userInput == "4":
-          cmpt120imageManip.grayscale(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.grayscale(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         elif userInput == "5":
-          cmpt120imageManip.sepia(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.sepia(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         elif userInput == "6":
-          cmpt120imageManip.decreasebrightness(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.decreasebrightness(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         elif userInput == "7":
-          cmpt120imageManip.increasebrightness(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.increasebrightness(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img  
         elif userInput == "8":
           state["mode"] = "basic"
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         elif userInput == "9":
           state["mode"] = "advanced"
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
 
         # ***add the rest to handle other manipulation functionalities***
       while appStateValues["mode"] == "advanced": # While the definition of mode is advanced, perform the following functions after input
         
         if userInput == "1":
-          img = cmpt120imageManip.rotateleft(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          img = imageManip.rotateleft(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         if userInput == "2":
-          img = cmpt120imageManip.rotateright(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          img = imageManip.rotateright(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         elif userInput == "3":
-          cmpt120imageManip.pixelate(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.pixelate(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img  
         elif userInput == "4":
-          cmpt120imageManip.binarize(img)
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageManip.binarize(img)
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img  
         elif userInput == "5":
           state["mode"] = "basic"
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
         elif userInput == "6":
           state["mode"] = "intermediate"
-          cmpt120imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
+          imageProj.showInterface(img, appStateValues["lastOpenFilename"], generateMenu(appStateValues))
           return img
 
     else: # unrecognized user input
