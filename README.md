@@ -4,15 +4,15 @@ This project is an image processing software that allows users to manipulate ima
 ## Features
 The image processing software has the following features:
 
-Load and save images from/to the computer
-Display the image in a user interface window, with caption and instruction text
-Manipulate the image using a variety of functions, including:
-Flip horizontally/vertically
-Rotate left/right
-Increase/decrease contrast
-Apply grayscale, sepia, and negative filters
-Reset the image to its original state
-Quit the program
+- Load and save images from/to the computer
+- Display the image in a user interface window, with caption and instruction text
+- Manipulate the image using a variety of functions, including:
+- Flip horizontally/vertically
+- Rotate left/right
+- Increase/decrease contrast
+- Apply grayscale, sepia, and negative filters
+- Reset the image to its original state
+- Quit the program
 ## Usage
 - To use the image processing software, simply run the main.py file using Python. The program will prompt you to open an image from your computer, and will display it in the user interface window. From there, you can select from a variety of functions to manipulate the image as desired.
 
