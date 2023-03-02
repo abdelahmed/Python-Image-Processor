@@ -1,6 +1,3 @@
-# Starter code for main.py
-# Author(s): Abdelrahman Ahmed
-# Date: November 20, 2020
 # Description: Image Processing Program with Interface
 
 import imageProj
