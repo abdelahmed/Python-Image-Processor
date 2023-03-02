@@ -1,7 +1,3 @@
-# CMPT 120 Yet Another Image Processer
-# Starter code for cmpt120imageManip.py
-# Author(s): Abdelrahman Ahmed
-# Date: Nov, 20, 2020
 # Description: Manipulation Functions for the Processor
 
 import imageProj
